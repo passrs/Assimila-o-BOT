@@ -1,5 +1,5 @@
 # Assimila-o-BOT
-BOT feito para usar no discord de Assimilação RPG, desenvolvido sem fins lucrativos para rolagens de dados e sorteio de cartas do sistema. O BOT é funcional para rodar no seu próprio dispositivo, seja ele Windows ou Linux, ou usando o link funcional do discord para adicioná-lo em seu servidor(questão ainda em desenvolvimento).
+BOT de Assimilação RPG feito para usar no discord, desenvolvido sem fins lucrativos para rolagens de dados e sorteio de cartas do sistema. O BOT é funcional para rodar no seu próprio dispositivo, seja ele Windows ou Linux, ou usando o link funcional do discord para adicioná-lo em seu servidor(questão ainda em desenvolvimento).
 
 
 ## Como rodar o Bot em seu dispositivo
@@ -57,7 +57,7 @@ Este guia vai ensinar como criar a aplicação do seu Bot no portal de desenvolv
    * Baixe o arquivo na aba *Releases* ou [clique neste link](https://github.com/passrs/Assimila-o-BOT/releases/tag/v1.0) e extraia a pasta em qualquer lugar do computador.
 
 2. **Adicione o Token do seu Bot:**
-   * Abra o arquivo `.env` com o Bloco de Notas ou qualquer editor de texto.
+   * Abra o arquivo `.env` com o Bloco de Notas ou qualquer editor de texto. **OBS:** O arquivo `.env` talvez não apareça na pasta. Para visualizá-lo, pesquise por *'como visualizar arquivos ocultos'* e veja como fazer tal alteração no seu dispositivo.
    * Cole o token do seu bot na linha `DISCORD_TOKEN=seu_token_aqui` e salve o arquivo.
 
 3. **Inicie o Bot:**
