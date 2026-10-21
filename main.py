@@ -1,4 +1,4 @@
-import aux
+import _aux
 import os
 import discord 
 from discord.ext import commands
@@ -29,7 +29,7 @@ async def dado(ctx, *, rolagem: str):
             if (rolagem[pos-1].isdigit() and int(rolagem[pos-1]) > 0): #só pode fazer uma rolagem caso a digitação esteja correta no formato 'xdy' Ex: 3d6 ; 2d10; 1d12 
                 qtd_dados = int(rolagem[pos-1])
                 for j in range(qtd_dados):
-                    dados_rolados.append(aux.escolhe_imagem(6 if i == 0 else (10 if i == 1 else 12))) #faz a rolagem e guarda os caminhos das imagens em 'dados_rolados'
+                    dados_rolados.append(_aux.escolhe_imagem(6 if i == 0 else (10 if i == 1 else 12))) #faz a rolagem e guarda os caminhos das imagens em 'dados_rolados'
             else:
                 await ctx.send("**ERRO DE DIGITAÇÃO!!!**") 
                 return 0
