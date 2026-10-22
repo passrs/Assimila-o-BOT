@@ -19,14 +19,47 @@ async def on_ready(): #mensagem de inicialização do bot
     
 @bot.command() #comandos do bot
 async def ajuda(ctx):
-    await ctx.send("="*78 + "\n" + "Bot de rolagem de dados de assimilação RPG. Use o comando `&dado` e digite os valores dos dados no formato **'xdy'**." + "\nEx: `3d6+2d10`, `4d12`\n" + "="*78)
-    
+    await ctx.send("**Bot de rolagem de dados de assimilação RPG. Use o comando `&dado` e digite os valores dos dados no formato `'xdy'` **." + "\nEx: `3d6+2d10`, `4d12`")
+
+@bot.command()
+async def cartas(ctx, *, mensagem: str):
+    msg = mensagem.lower()
+    comandos = ["info", "sort"] 
+    naipes = ["c", "o", "e", "p"]
+    if msg.find(comandos[0]) != -1:
+        # Pega tudo após o comando 'info' e remove espaços extras nas pontas
+        msg = msg[msg.find(comandos[0]) + len(comandos[0]):].strip()
+        # Encontra o naipe na mensagem
+        naipe = next((i for i in naipes if i in msg), None)
+        if naipe is None:
+            await ctx.send("**ERRO DE DIGITAÇÃO: NAIPE INVÁLIDO!**") 
+            return
+        pos = msg.find(naipe)
+        # Pega todo o texto que está ANTES do caractere do naipe e remove espaços
+        texto_numero = msg[:pos].strip()
+        # Verifica se a parte anterior é realmente numérica (ex: "1", "10", "13")
+        if not texto_numero.isdigit():
+            await ctx.send("**ERRO DE DIGITAÇÃO: NÚMERO INVÁLIDO!**")
+            return
+        carta = int(texto_numero)
+        # Valida se a carta está dentro do intervalo permitido (1 a 13)
+        if carta < 1 or carta > 13:
+            await ctx.send("**NÚMERO DA CARTA INVÁLIDO (USE DE 1 A 13)!!!**") 
+            return
+        caminho_img = _aux.escolhe_imagem_carta(naipes.index(naipe), carta)
+        await ctx.send(caminho_img)
+    elif (msg.find(comandos[1]) != -1):
+        msg = msg[msg.find(comandos[1]) + len(comandos[1]):].strip() #define a mensagem ignorando o comando ('sort') e espaços em branco
+        pass
+    else:
+        await ctx.send("**ERRO DE DIGITAÇÃO!!!**") 
+        return
 @bot.command() #comandos do bot
 async def dado(ctx, *, rolagem: str):
     dados = ["d6", "d10", "d12"]
     dados_rolados = []
     qtd_dados_rolados = {}
-    for i in range(3):
+    for i in range(len(dados)):
         if (rolagem.find(dados[i]) != -1):
             pos = rolagem.find(dados[i])
             if (rolagem[pos-1].isdigit()): #trata erros de digitação fora do formato 'xdy' Ex: 3d6 ; 2d12 ; 2d6+1d10 
@@ -40,7 +73,7 @@ async def dado(ctx, *, rolagem: str):
                     return
                 qtd_dados_rolados[dados[i]] = qtd_dados
                 for j in range(qtd_dados):
-                    dados_rolados.append(_aux.escolhe_imagem(6 if i == 0 else (10 if i == 1 else 12))) #faz a rolagem e guarda os caminhos das imagens em 'dados_rolados'
+                    dados_rolados.append(_aux.escolhe_imagem_dado(6 if i == 0 else (10 if i == 1 else 12))) #faz a rolagem e guarda os caminhos das imagens em 'dados_rolados'
             else:
                 await ctx.send("**ERRO DE DIGITAÇÃO!!!**") 
                 return
@@ -73,6 +106,5 @@ async def dado(ctx, *, rolagem: str):
         #envia um texto inicial mencionando quem rolou e mostra a grade com os dados
         await ctx.send(
                     f"🎲 {ctx.author.mention} **fez uma rolagem de {'+'.join(f'`{valor}{chave}`' for chave, valor in qtd_dados_rolados.items())}:**", 
-                    file=arq_final
-                )
+                    file=arq_final)
 bot.run(TOKEN)
