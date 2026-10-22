@@ -1,5 +1,8 @@
 #!/bin/bash
-echo "=== Configurando o Bot do Discord ==="
+echo "=== Configurando Assimila - BOT ==="
+
+# Navega para a raiz do projeto (um nível acima de iniciadores)
+cd "$(dirname "$0")/.."
 
 #cria o ambiente virtual se não existir
 if [ ! -d "venv" ]; then
@@ -10,6 +13,6 @@ fi
 #ativa o ambiente e instala dependências
 echo "Instalando bibliotecas necessárias..."
 source venv/bin/activate
-pip install -r requirements.txt
+pip install -r iniciadores/requirements.txt
 
 echo "=== Configuração concluída! Lembre-se de editar o .env com seu TOKEN. ==="

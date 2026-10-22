@@ -29,10 +29,10 @@ imgs_cartas_paus = ["imgs/cartas_paus/carta1.png","imgs/cartas_paus/carta2.png",
                     "imgs/cartas_paus/carta5.png","imgs/cartas_paus/carta6.png","imgs/cartas_paus/carta7.png","imgs/cartas_paus/carta8.png",
                     "imgs/cartas_paus/carta9.png","imgs/cartas_paus/carta10.png","imgs/cartas_paus/carta11.png","imgs/cartas_paus/carta12.png",
                     "imgs/cartas_paus/carta13.png"]
-def _gera_aleatorio(n: int): 
+def _gera_aleatorio(n: int): #gera um número aleatório entre 0 e n-1
     return random.randint(0, n-1)
 
-def escolhe_imagem_dado(lado: int):
+def escolhe_imagem_dado(lado: int): #sorteia um caminho de imagem de acordo com o lado do dado
     rolagem  = _gera_aleatorio(lado)
     if (lado == 6):
         return imgs_d6[rolagem]
@@ -41,7 +41,7 @@ def escolhe_imagem_dado(lado: int):
     elif (lado == 12):
         return imgs_d12[rolagem]
 
-def escolhe_imagem_carta(naipe: int, carta: int):
+def escolhe_imagem_carta(naipe: int, carta: int): #retorna a imagem de uma carta dado seu número e seu naipe
     if (naipe == 0):
         return imgs_cartas_copas[carta-1]
     elif (naipe == 1):
@@ -51,14 +51,14 @@ def escolhe_imagem_carta(naipe: int, carta: int):
     elif (naipe == 3):
         return imgs_cartas_paus[carta-1]
     
-def sorteia_carta(naipe: int, qtd_cartas: int):
+def sorteia_carta(naipe: int, qtd_cartas: int): #sorteia um número de cartas (qtd_cartas) dado seu naipe e retorna uma lista com os caminhos das cartas
     cartas_sorteadas = []
     for i in range(qtd_cartas):
         rand = _gera_aleatorio(13)
         if (rand in cartas_sorteadas):
-            while (rand in cartas_sorteadas):
+            while (rand in cartas_sorteadas): #não deixa sortear uma carta mais de uma vez
                 rand = _gera_aleatorio(13) #13 numeros possíveis (0 a 12)
-        cartas_sorteadas.append(rand)
+        cartas_sorteadas.append(rand) #armazena os valores inteiros na lista
     if (naipe == 0):
             return [imgs_cartas_copas[i] for i in cartas_sorteadas]
     elif (naipe == 1):
