@@ -60,6 +60,23 @@ async def ajuda(ctx):
     )
     embed.set_footer(text="Assimila - BOT • Digite os comandos corretamente para evitar erros.")
     await ctx.send(embed=embed)
+@bot.command() #comando do bot
+async def legenda(ctx):
+    embed = discord.Embed(
+            title="📝 LEGENDA",
+            description="Segue abaixo a `legenda` das informações das cartas:",
+            color=0x3498DB  #cor azul da barra lateral
+        )
+    embed.add_field(name="",
+            value=(
+                "**`J` -> Joaninha | `B` -> Cervo | `C` -> Coruja**\n"
+                "**`D` -> Nível de Determinação | `d` -> Ponto de Determinação**\n"
+                "**`A` -> Nível de Assimilação | `a` -> Ponto de Assimilação**\n"
+                "**`S` -> Nível de Saúde | `s` -> Ponto de Saúde | `P` -> Penalidade**"
+            ),
+            inline=False
+        )
+    await ctx.send(embed=embed) 
 
 @bot.command() #comando do bot
 async def cartas(ctx, *, mensagem: str):
@@ -87,10 +104,20 @@ async def cartas(ctx, *, mensagem: str):
         if (carta < 1 or carta > 13): #valida se a carta está dentro do intervalo permitido (1 a 13)
             await ctx.send("**NÚMERO DA CARTA INVÁLIDO (USE DE 1 A 13)!!!**") 
             return
+            
         caminho_img = _aux.escolhe_imagem_carta(naipes.index(naipe), carta)
-        await ctx.send(caminho_img)
+        
+        if not os.path.exists(caminho_img): #trata caso o arquivo da carta não exista
+            await ctx.send("**ERRO: IMAGEM DA CARTA NÃO ENCONTRADA!**")
+            return
+
+        #envia diretamente a imagem da carta informada
+        arq_carta = discord.File(caminho_img, filename="carta.png")
+        await ctx.send(f"**Informações da `carta {carta}`**")
+        await ctx.send(file=arq_carta)
+        await ctx.send("**Se for necessário, digite `&legenda` para melhor compreensão das informações.**")
     
-    elif (msg.find(comandos[1]) != -1): #trata as nuâncias do coamndo '&cartas sort'
+    elif (msg.find(comandos[1]) != -1): #trata as nuâncias do comando '&cartas sort'
         cartas_sorteadas = []
         msg = msg[msg.find(comandos[1]) + len(comandos[1]):] #pega tudo após o comando 'sort'
         
@@ -103,6 +130,7 @@ async def cartas(ctx, *, mensagem: str):
         if not naipes_presentes: #trata se não encontrou um dos naipes 'c, o, e, p' 
             await ctx.send("**ERRO DE DIGITAÇÃO: NENHUM NAIPE ENCONTRADO!**")
             return
+            
         for i in naipes_presentes:
             if (msg.count(i) > 1): # Verifica se o mesmo naipe foi digitado mais de uma vez
                 await ctx.send(f"**ERRO DE DIGITAÇÃO: NAIPE `{i.upper()}` REPETIDO!**")
@@ -115,18 +143,40 @@ async def cartas(ctx, *, mensagem: str):
                     await ctx.send(f"**ERRO DE DIGITAÇÃO: NÚMERO INVÁLIDO DO NAIPE `{i}`!!!**")
                     return
                 
-                cartas_sorteadas.append(_aux.sorteia_carta(naipes.index(i), qtd_cartas))
+                #adiciona o caminho das cartas sorteadas na lista principal
+                resultado_sorteio = _aux.sorteia_carta(naipes.index(i), qtd_cartas)
+                if isinstance(resultado_sorteio, list):
+                    cartas_sorteadas.extend(resultado_sorteio)
+                else:
+                    cartas_sorteadas.append(resultado_sorteio)
+                    
                 msg = msg.replace(texto_numero+i,"") #retira o número de cartas sorteadas e o naipe(Ex: '2c3o' -> '3o')
             else:
                 await ctx.send("**ERRO DE DIGITAÇÃO!!!**")
                 return
             
         if cartas_sorteadas:
-            await ctx.send(cartas_sorteadas)
-    else: #caso não tenha digitado corretamente um dos comandos 'info' ou 'sort'
-        await ctx.send("**ERRO DE DIGITAÇÃO!!!**") 
-        return
-    
+            #prepara a lista de arquivos para envio direto no Discord
+            arquivos_envio = []
+            for cont, caminho in enumerate(cartas_sorteadas):
+                if os.path.exists(caminho):
+                    #da um nome único para cada arquivo para evitar conflito
+                    arquivos_envio.append(discord.File(caminho, filename=f"carta_{cont}.png"))
+            
+            if not arquivos_envio:
+                await ctx.send("**ERRO: IMAGENS DAS CARTAS NÃO ENCONTRADAS!**")
+                return
+
+            #o Discord aceita no máximo 10 arquivos por mensagem, então enviamos em lotes se necessário
+            for i in range(0, len(arquivos_envio), 10):
+                lote = arquivos_envio[i:i+10]
+                if (i == 0):
+                    await ctx.send(f"🎴 {ctx.author.mention} **sorteou {len(cartas_sorteadas)} carta(s):**", files=lote)
+                else:
+                    await ctx.send(files=lote)
+        await ctx.send("**Se for necessário, digite `&legenda` para melhor compreensão das informações.**")
+   
+
 @bot.command() #comando do bot
 async def dado(ctx, *, rolagem: str):
     dados = ["d6", "d10", "d12"]
@@ -173,7 +223,7 @@ async def dado(ctx, *, rolagem: str):
                 cont_linha += 1
             else:
                 cont_coluna += 1
-       
+        
         buffer = io.BytesIO()
         grade.save(buffer, format='PNG')  #salva a imagem combinada na memória RAM (sem criar arquivos no disco)
         buffer.seek(0)
@@ -183,4 +233,5 @@ async def dado(ctx, *, rolagem: str):
         await ctx.send(
                     f"🎲 {ctx.author.mention} **fez uma rolagem de {'+'.join(f'`{valor}{chave}`' for chave, valor in qtd_dados_rolados.items())}:**", 
                     file=arq_final)
+
 bot.run(TOKEN)
