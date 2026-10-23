@@ -13,6 +13,6 @@ fi
 #ativa o ambiente e instala dependências
 echo "Instalando bibliotecas necessárias..."
 source venv/bin/activate
-pip install -r iniciadores/requirements.txt
+pip install -r setup/requirements.txt
 
 echo "=== Configuração concluída! Lembre-se de editar o .env com seu TOKEN. ==="
