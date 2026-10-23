@@ -1,20 +1,20 @@
 # Assimila-o-BOT
-BOT de Assimilação RPG feito para usar no discord, desenvolvido sem fins lucrativos para rolagens de dados e sorteio de cartas do sistema. O BOT é funcional para rodar no seu próprio dispositivo, seja ele Windows ou Linux, ou usando o link funcional do discord para adicioná-lo em seu servidor(questão ainda em desenvolvimento).
+BOT de Assimilação RPG feito para usar no discord, desenvolvido sem fins lucrativos para rolagens de dados e sorteio de cartas do sistema. O BOT é funcional para rodar no seu próprio dispositivo, seja ele *Windows*, *Linux* ou *Mac*, ou usando o link funcional do discord para adicioná-lo em seu servidor **(questão ainda em desenvolvimento)**.
 
 
-## Como rodar o Bot em seu dispositivo
+## ⚙️ Como rodar o Bot em seu dispositivo
 
 ### Pré-requisitos
 1. Você precisa de um Bot registrado na sua conta do discord.
-2. Você precisa ter o **Python instalado** no seu computador.
+2. Você precisa ter a linguagem de programação **Python** instalado no seu computador.
 * [Baixar Python (site oficial)](https://www.python.org/downloads/) *(Ao instalar no Windows, marque a opção "Add Python to PATH")*.
 
 ---
 ## 🤖 Como criar o Bot no Discord e obter o Token do seu Bot
 
-Para utilizar este projeto, você precisará registrar um Bot no painel de desenvolvedores do Discord para gerar o token de acesso. O processo é gratuito e rápido.
+Para utilizar este projeto, você precisará registrar um Bot no `painel de desenvolvedores do Discord`, e isso possibilitará gerar o token de acesso do seu bot. 
 
-Este guia vai ensinar como criar a aplicação do seu Bot no portal de desenvolvedores do Discord, gerar o token de acesso e convidá-lo para o seu servidor. O processo é simples, gratuito e lrápido.
+Este guia vai ensinar como criar a aplicação do seu Bot no *portal de desenvolvedores do Discord*, gerar o token de acesso e convidá-lo para o seu servidor. O processo é simples, gratuito e rápido.
 
 ---
 
@@ -44,7 +44,7 @@ Este guia vai ensinar como criar a aplicação do seu Bot no portal de desenvolv
 > 🔒 **SEGURANÇA:** O Token funciona como a senha secreta do seu bot. Nunca o compartilhe com ninguém!
 4. Cole esse Token em um lugar onde vc possa acessar e que seja seguro.
 
-### Passo 5: Convidar o Bot para seu servidor
+### Passo 5: Convidar o Bot Para Seu Servidor
 1. Vá até a aba lateral e procure por **OAuth2**.
 2. Depois, vá até a seção **Gerador de URL OAuth2** e marque a caixinha **Bot**.
 3. Role a página para baixo e na seção **Permissões do bot** selecione **Administrador**.
@@ -52,20 +52,24 @@ Este guia vai ensinar como criar a aplicação do seu Bot no portal de desenvolv
 
 ---
 
-## ⚙️ Passos de Instalação:
-1. **Baixe o projeto:**
-   * Baixe o arquivo na aba *Releases* ou [clique neste link](https://github.com/passrs/Assimila-o-BOT/releases/tag/v1.0) e extraia a pasta em qualquer lugar do computador.
+### 🚀 Como Instalar e Rodar o Bot (SIGA AS INSTRUÇÕES PASSO A PASSO): 
 
-2. **Adicione o Token do seu Bot:**
-   * Abra o arquivo `.env` com o Bloco de Notas ou qualquer editor de texto. **OBS:** O arquivo `.env` talvez não apareça na pasta. Para visualizá-lo, pesquise por *'como visualizar arquivos ocultos'* e veja como fazer tal alteração no seu dispositivo.
-   * Cole o token do seu bot na linha `DISCORD_TOKEN=seu_token_aqui` e salve o arquivo.
+**OBS:** O arquivo `.env` talvez não apareça na pasta. Para visualizá-lo, pesquise por *'como visualizar arquivos ocultos'* e veja como fazer tal alteração no seu dispositivo.
 
-3. **Inicie o Bot:**
-   * **No Linux / Mac:**
-     1. Abra o terminal na pasta do projeto.
-     2. Rode `./configurar.sh` (apenas na primeira vez).
-     3. Rode `./iniciar.sh` para ligar o bot.
-   * **No Windows:**
-     * Dê **dois cliques** no arquivo `iniciar.bat`.
+#### 💻 Se você usa Windows:
+1. Baixe o arquivo `assimila-bot-windows.zip` e extraia a pasta.
+2. Abra o arquivo `.env`, que se encontra na pasta `main`, com o *Bloco de Notas*. Em seguida, coloque seu token na linha `TOKEN_BOT=seu_token_aqui` e salve.
+3. Dê dois cliques no arquivo `iniciar.bat` na pasta `setup`.
 
-###OBS: Enquanto o seu terminal estiver aberto, o bot funcionará!!!
+#### 🐧 Se você usa Linux / macOS:
+1. Baixe o arquivo `assimila-bot-linux-mac.zip` e extraia a pasta.
+2. Edite o arquivo `.env` na pasta `main` adicionando seu token na linha `TOKEN_BOT=seu_token_aqui` e salve.
+3. Abra o terminal na pasta `setup` e execute:
+   ```bash
+   sed -i 's/\r$//' configurar.sh iniciar.sh && chmod +x configurar.sh iniciar.sh && ./configurar.sh && ./iniciar.sh
+
+**Nas próximas vezes que você for iniciar o bot, é apenas necessário digitar `./iniciar.sh` no terminal.** 
+
+---
+🚨OBS: Enquanto a janela do terminal que for aberta no seu dispositivo estiver rodando, o bot funcionará!!!
+---
