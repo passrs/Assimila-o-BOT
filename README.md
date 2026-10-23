@@ -54,7 +54,7 @@ Este guia vai ensinar como criar a aplicação do seu Bot no portal de desenvolv
 
 ## ⚙️ Passos de Instalação:
 1. **Baixe o projeto:**
-   * Baixe o arquivo na aba *Releases* ou [clique neste link](https://github.com/passrs/Assimila-o-BOT/releases/tag/v1.0) e extraia a pasta em qualquer lugar do computador.
+   * Baixe o arquivo na aba *Releases* ou [clique neste link](https://github.com/passrs/Assimila-o-BOT/releases/tag/v1.2) e extraia a pasta em qualquer lugar do computador.
 
 2. **Adicione o Token do seu Bot:**
    * Abra o arquivo `.env` com o Bloco de Notas ou qualquer editor de texto. **OBS:** O arquivo `.env` talvez não apareça na pasta. Para visualizá-lo, pesquise por *'como visualizar arquivos ocultos'* e veja como fazer tal alteração no seu dispositivo.
