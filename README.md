@@ -67,3 +67,5 @@ Este guia vai ensinar como criar a aplicação do seu Bot no portal de desenvolv
      3. Rode `./iniciar.sh` para ligar o bot.
    * **No Windows:**
      * Dê **dois cliques** no arquivo `iniciar.bat`.
+
+###OBS: Enquanto o seu terminal estiver aberto, o bot funcionará!!!
