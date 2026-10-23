@@ -1,8 +1,14 @@
 # Assimila-o-BOT
 BOT de Assimilação RPG feito para usar no discord, desenvolvido sem fins lucrativos para rolagens de dados e sorteio de cartas do sistema. O BOT é funcional para rodar no seu próprio dispositivo, seja ele *Windows*, *Linux* ou *Mac*, ou usando o link funcional do discord para adicioná-lo em seu servidor **(questão ainda em desenvolvimento)**.
 
+## 📌 Seções e Guias
+* [📖 Guia de Comandos](#-guia-de-comandos-assimila---bot)
+* [⚙️ Pré-Requisitos para o Assimila - BOT rodar em seu dispositivo](#%EF%B8%8F-pr%C3%A9-requisitos-para-o-assimila---bot-rodar-em-seu-dispositivo)
+* [🤖 Como criar o Bot no Discord e obter o Token](#-como-criar-o-bot-no-discord-e-obter-o-token-do-seu-bot)
+* [🚀 Como Instalar e Rodar o Bot](#-como-instalar-e-rodar-o-bot-siga-as-instru%C3%A7%C3%B5es-passo-a-passo)
 
-## ⚙️ Como rodar o Bot em seu dispositivo
+---
+## ⚙️ Pré-Requisitos para o Assimila - BOT rodar em seu dispositivo
 
 ### Pré-requisitos
 1. Você precisa de um Bot registrado na sua conta do discord.
@@ -73,3 +79,42 @@ Este guia vai ensinar como criar a aplicação do seu Bot no *portal de desenvol
 ---
 🚨OBS: Enquanto a janela do terminal que for aberta no seu dispositivo estiver rodando, o bot funcionará!!!
 ---
+
+
+## 📖 Guia de Comandos: Assimila - BOT
+**🚨OBS: Se quiser ver a aba de comandos no próprio discord, digite o comando `&ajuda`**
+
+Confira abaixo como utilizar os comandos de rolagens de dados e sorteio de cartas do bot:
+
+### 🎲 Rolagem de Dados (`&dado`)
+Para rolar dados, utilize o formato padrão **`xdy`**.
+
+* **Exemplos:** `&dado 3d6+2d10` ou `&dado 4d12`
+* Suporta múltiplos dados (máximo de **12** dados do mesmo tipo por rolagem).
+
+---
+
+### 🃏 Informações de Cartas (`&cartas info`)
+Exibe a imagem de uma carta específica usando o **valor numérico** da carta e a **letra de seu naipe**.
+
+* **Exemplo:** `&cartas info 10c` *(10 de Copas)*
+* **Intervalo:** Números de **1 a 13**
+* **Naipes:** 
+  * `c` — Copas
+  * `o` — Ouros
+  * `e` — Espadas
+  * `p` — Paus
+* **Cartas Especiais:** `1` (Ás) | `11` (Valete) | `12` (Dama) | `13` (Rei)
+
+---
+
+### 🎴 Sorteio de Cartas (`&cartas sort`)
+Sorteia a quantidade especificada de cartas para cada naipe informado.
+
+* **Exemplo:** `&cartas sort 3c 2o` *(Sorteia 3 cartas de Copas e 2 de Ouros)*
+* Suporta múltiplos naipes na mesma mensagem.
+* **Intervalo:** Números de **1 a 13**
+* **Naipes:** `c` (Copas) | `o` (Ouros) | `e` (Espadas) | `p` (Paus)
+
+---
+> 💡 **Dica:** Digite os comandos exatamente no formato indicado para evitar erros de execução.
