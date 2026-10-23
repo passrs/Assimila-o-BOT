@@ -11,7 +11,7 @@ if not exist venv (
     python -m venv venv
     call venv\Scripts\activate
     echo Instalando bibliotecas requeridas...
-    pip install -r iniciadores\requirements.txt
+    pip install -r setup\requirements.txt
 ) else (
     call venv\Scripts\activate
 )
