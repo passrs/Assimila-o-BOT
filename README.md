@@ -1,5 +1,5 @@
 # Assimila-o-BOT
-BOT de Assimilação RPG feito para usar no discord, desenvolvido sem fins lucrativos para rolagens de dados e sorteio de cartas do sistema. O BOT é funcional para rodar no seu próprio dispositivo, seja ele *Windows*, *Linux* ou *Mac*, ou usando o link funcional do discord para adicioná-lo em seu servidor **(questão ainda em desenvolvimento)**.
+BOT de Assimilação RPG feito para usar no discord, desenvolvido sem fins lucrativos para rolagens de dados e sorteio de cartas do sistema. O BOT é funcional para rodar no seu próprio dispositivo, seja ele *Windows*, *Linux* ou *Mac*, ou usando o link funcional do discord para adicioná-lo em seu servidor **(questão ainda em desenvolvimento)**. *Seções e Guias* estão presentes nesta página para orientações a respeito de como utilizar o bot em seu servidor (rodando em seu dispositivo). 
 
 ## 📌 Seções e Guias
 * [📖 Guia de Comandos](#-guia-de-comandos-assimila---bot)
@@ -62,10 +62,15 @@ Este guia vai ensinar como criar a aplicação do seu Bot no *portal de desenvol
 
 **OBS:** O arquivo `.env` talvez não apareça na pasta. Para visualizá-lo, pesquise por *'como visualizar arquivos ocultos'* e veja como fazer tal alteração no seu dispositivo.
 
+**Baixe o projeto:**
+   * Baixe o arquivo na aba *Releases* ou [clique neste link](https://github.com/passrs/Assimila-o-BOT/releases/tag/v1.2). Em seguida, baixe o arquivo `.zip` respectivo ao seu dispositivo.
+     
 #### 💻 Se você usa Windows:
 1. Baixe o arquivo `assimila-bot-windows.zip` e extraia a pasta.
 2. Abra o arquivo `.env`, que se encontra na pasta `main`, com o *Bloco de Notas*. Em seguida, coloque seu token na linha `TOKEN_BOT=seu_token_aqui` e salve.
 3. Dê dois cliques no arquivo `iniciar.bat` na pasta `setup`.
+* **🚨OBS: Enquanto a janela do terminal que for aberta no seu dispositivo estiver rodando, o bot funcionará!!!**
+* Se houver algum tipo de erro, apague a pasta `venv` que foi gerada na raíz do projeto e repita o processo **exatamente** conforme descrito. 
 
 #### 🐧 Se você usa Linux / macOS:
 1. Baixe o arquivo `assimila-bot-linux-mac.zip` e extraia a pasta.
@@ -74,11 +79,12 @@ Este guia vai ensinar como criar a aplicação do seu Bot no *portal de desenvol
    ```bash
    sed -i 's/\r$//' configurar.sh iniciar.sh && chmod +x configurar.sh iniciar.sh && ./configurar.sh && ./iniciar.sh
 
-**Nas próximas vezes que você for iniciar o bot, é apenas necessário digitar `./iniciar.sh` no terminal.** 
+* **Nas próximas vezes que você for iniciar o bot, é apenas necessário digitar `./iniciar.sh` no terminal.** 
+* **🚨OBS: Enquanto a janela do terminal que for aberta no seu dispositivo estiver rodando, o bot funcionará!!!**
+* * Se houver algum tipo de erro, apague a pasta `venv` que foi gerada na raíz do projeto e repita o processo **exatamente** conforme descrito.
 
----
-🚨OBS: Enquanto a janela do terminal que for aberta no seu dispositivo estiver rodando, o bot funcionará!!!
----
+
+
 
 
 ## 📖 Guia de Comandos: Assimila - BOT
